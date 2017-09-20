@@ -1,0 +1,21 @@
+{
+  "presets": [
+    "latest",
+    "stage-0"
+  ],
+  "plugins": [
+    ["transform-runtime", {
+      "polyfill": false,
+      "regenerator": true
+    }],
+    "transform-flow-strip-types"
+  ],
+  "ignore": [],
+  "env": {
+    "production": {
+      "plugins": [
+        "lodash"
+      ]
+    }
+  }
+}
