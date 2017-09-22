@@ -36,15 +36,15 @@ export default class Adapter implements AdapterInterface {
     this.listeners = {};
   }
 
-  addDispatch(dispatch:Function) {
+  addDispatch = (dispatch:Function) => {
     this.dispatches.push(dispatch);
   }
 
-  removeDispatch(dispatch:Function) {
+  removeDispatch = (dispatch:Function) => {
     this.dispatches = this.dispatches.filter((func) => func !== dispatch);
   }
 
-  recordSubscribe(name:string): void {
+  recordSubscribe = (name:string): void => {
     if (this.records[name] && !this.records[name].isDestroyed) {
       return;
     }
@@ -75,7 +75,7 @@ export default class Adapter implements AdapterInterface {
     record.subscribe(listener, true);
   }
 
-  async recordUnsubscribe(name:string): Promise<void> {
+  recordUnsubscribe = async (name:string): Promise<void> => {
     const record = this.records[name];
     if (!record) {
       return;
@@ -95,7 +95,7 @@ export default class Adapter implements AdapterInterface {
     });
   }
 
-  listSubscribe(name:string): void {
+  listSubscribe = (name:string): void => {
     if (this.lists[name] && !this.lists[name].isDestroyed) {
       return;
     }
@@ -125,7 +125,7 @@ export default class Adapter implements AdapterInterface {
     list.subscribe(listener, true);
   }
 
-  async listUnsubscribe(name:string): Promise<void> {
+  listUnsubscribe = async (name:string): Promise<void> => {
     const list = this.lists[name];
     if (!list) {
       return;
