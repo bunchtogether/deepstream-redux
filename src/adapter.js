@@ -1,6 +1,6 @@
 // @flow
 
-import { pickBy, identity } from 'lodash';
+// import { pickBy, identity } from 'lodash';
 import DeepstreamClient from 'deepstream.io-client-js';
 import * as constants from './constants';
 import type { AdapterInterface } from './types';
@@ -60,13 +60,13 @@ export default class Adapter implements AdapterInterface {
     });
     this.records[name] = record;
     const listener = (value:Object) => {
-      const prunedValue = pickBy(value, identity);
+      // const prunedValue = pickBy(value, identity);
       this.dispatches.forEach((dispatch) => {
         dispatch({
           type: constants.RECORD_UPDATE,
           value: {
             name,
-            value: prunedValue,
+            value, // : prunedValue,
           },
         });
       });

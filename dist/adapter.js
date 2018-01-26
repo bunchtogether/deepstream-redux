@@ -16,8 +16,6 @@ var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _lodash = require('lodash');
-
 var _deepstream = require('deepstream.io-client-js');
 
 var _deepstream2 = _interopRequireDefault(_deepstream);
@@ -30,6 +28,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import { pickBy, identity } from 'lodash';
 var Adapter = function Adapter(client) {
   var _this = this;
 
@@ -61,13 +60,13 @@ var Adapter = function Adapter(client) {
     });
     _this.records[name] = record;
     var listener = function listener(value) {
-      var prunedValue = (0, _lodash.pickBy)(value, _lodash.identity);
+      // const prunedValue = pickBy(value, identity);
       _this.dispatches.forEach(function (dispatch) {
         dispatch({
           type: constants.RECORD_UPDATE,
           value: {
             name: name,
-            value: prunedValue
+            value: value // : prunedValue,
           }
         });
       });
